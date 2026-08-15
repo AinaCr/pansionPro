@@ -1,0 +1,13 @@
+.root {
+    -fx-background-image: url("../image/Background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius:30px ;
+    -fx-border-radius: 30px;
+}
+.textField {
+
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8, 7;
+}
