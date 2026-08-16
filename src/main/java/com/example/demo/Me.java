@@ -18,6 +18,9 @@ public class Me {
     private StackPane personne;
 
     @FXML
+    private StackPane addAction;
+
+    @FXML
     private Pane bord1;
     @FXML
     private Pane bord2;
@@ -37,7 +40,7 @@ public class Me {
     @FXML
     public void initialize() {
         tousLesBords = List.of(bord1, bord2, bord3, bord4, bord5);
-        everyPane =List.of(tableau, personne);
+        everyPane =List.of(tableau, personne,addAction);
     }
 
 
@@ -94,5 +97,10 @@ public class Me {
         page1.setManaged(false);
         page2.setVisible(true);
         page2.setManaged(true);
+    }
+    @FXML
+    private void addPersonne(){
+        activeBtn(addAction);
+
     }
 }

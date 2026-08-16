@@ -460,7 +460,7 @@
                         <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
                      </padding>
                   </StackPane>
-                  <StackPane fx:id="personne" prefHeight="755.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;">
+                  <StackPane fx:id="personne" managed="false" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #F1F3F9;" visible="false">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="32.0" style="-fx-background-color: transparent;">
                            <children>
@@ -534,7 +534,7 @@
                                           </StackPane>
                                           <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #0D1A4D; -fx-background-radius: 8;" text="Filtrer" textFill="WHITE">
+                                                <Button mnemonicParsing="false" onAction="#addPersonne" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #0D1A4D; -fx-background-radius: 8;" text="Filtrer" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -559,6 +559,111 @@
                      <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                      </padding>
+                  </StackPane>
+                  <StackPane fx:id="addAction" prefHeight="756.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="736.0" prefWidth="792.0">
+                           <children>
+                              <HBox prefHeight="64.0" prefWidth="795.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Retour à la liste des personnes" textFill="#0d1a4d">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <StackPane prefHeight="678.0" prefWidth="792.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16;">
+                                 <children>
+                                    <VBox prefHeight="496.0" prefWidth="744.0" spacing="32.0">
+                                       <children>
+                                          <VBox prefHeight="32.0" prefWidth="747.0">
+                                             <children>
+                                                <Label text="Nouvelle Personne" textFill="#0d1a4d">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <HBox prefHeight="560.0" prefWidth="747.0">
+                                             <children>
+                                                <VBox prefHeight="526.0" prefWidth="359.0" spacing="8.0">
+                                                   <children>
+                                                      <Label text="Numéro IM (Auto-généré)" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField prefHeight="35.0" prefWidth="344.0" promptText="IM-9083" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                      <Label text="Nom" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="16.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="35.0" prefWidth="344.0" promptText="Ex: RAKOTOMALALA" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                      <Label text="Prenom" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="16.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="35.0" prefWidth="344.0" promptText="Ex: Jean de Dieu" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                      <Label text="Date de naissance" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="16.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="35.0" prefWidth="344.0" promptText="IM-9JJ/MM/AAAA (Ex: 14/05/1958)083" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                      <Label text="Diplôme le plus élevé" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="16.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="35.0" prefWidth="344.0" style="-fx-background-color: transparent; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: E2E8F0;" text="Selectionner">
+                                                        <items>
+                                                          <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                          <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                        </items>
+                                                      </MenuButton>
+                                                      <Label text="Contact / Téléphone" textFill="#0d1a4d">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="16.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="35.0" prefWidth="344.0" promptText="Ex: 034 56 789 10" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets right="16.0" />
+                                                   </padding>
+                                                </VBox>
+                                                <VBox prefHeight="558.0" prefWidth="392.0" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                                 </padding>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                     </children>
                   </StackPane>
                </children>
             </VBox>
