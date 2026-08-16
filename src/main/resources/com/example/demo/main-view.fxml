@@ -4,6 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -145,11 +147,11 @@
                         </HBox>
                      </children>
                   </StackPane>
-                  <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="316.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;" VBox.vgrow="ALWAYS">
+                  <StackPane fx:id="tableau" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="316.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;" visible="false" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="16.0" StackPane.alignment="CENTER">
                            <children>
-                              <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="177.0" prefWidth="1017.0">
+                              <StackPane disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="177.0" prefWidth="1017.0">
                                  <children>
                                     <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="80.0" StackPane.alignment="CENTER">
                                        <children>
@@ -444,7 +446,10 @@
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <StackPane prefHeight="251.0" prefWidth="1017.0" />
+                              <StackPane maxHeight="1.7976931348623157E308" prefHeight="251.0" prefWidth="1017.0">
+                                 <children>
+                                    <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="255.0" prefWidth="969.0" style="-fx-background-color: white; -fx-background-radius: 24;" />
+                                 </children></StackPane>
                            </children>
                         </VBox>
                      </children>
@@ -453,6 +458,106 @@
                      </VBox.margin>
                      <padding>
                         <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                     </padding>
+                  </StackPane>
+                  <StackPane fx:id="personne" prefHeight="755.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="32.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="985.0">
+                                 <children>
+                                    <HBox prefHeight="56.0" prefWidth="985.0">
+                                       <children>
+                                          <StackPane alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="838.0">
+                                             <children>
+                                                <Label text="Liste des Personnes" textFill="#0d1a4d">
+                                                   <font>
+                                                      <Font name="System Bold" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="+      Ajouter">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                              <StackPane prefHeight="78.0" prefWidth="985.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16;">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                       <children>
+                                          <StackPane prefHeight="78.0" prefWidth="430.0">
+                                             <children>
+                                                <TextField prefHeight="30.0" prefWidth="417.0" promptText="Rechercher par Nom, Prénom ou IM..." style="-fx-background-color: #F1F3F9;" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="16.0" />
+                                             </padding>
+                                          </StackPane>
+                                          <StackPane prefHeight="78.0" prefWidth="198.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Statut:" />
+                                                      <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton">
+                                                        <items>
+                                                          <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                          <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                        </items>
+                                                      </MenuButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Statut:" />
+                                                      <MenuButton mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                      </MenuButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #0D1A4D; -fx-background-radius: 8;" text="Filtrer" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                             <padding>
+                                                <Insets right="16.0" />
+                                             </padding>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                              <StackPane prefHeight="426.0" prefWidth="985.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16;" />
+                              <StackPane prefHeight="50.0" prefWidth="985.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16;" />
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                      </padding>
                   </StackPane>
                </children>

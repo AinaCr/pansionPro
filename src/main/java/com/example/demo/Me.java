@@ -12,6 +12,12 @@ public class Me {
     private StackPane page2;
 
     @FXML
+    private StackPane tableau;
+
+    @FXML
+    private StackPane personne;
+
+    @FXML
     private Pane bord1;
     @FXML
     private Pane bord2;
@@ -26,11 +32,14 @@ public class Me {
     private static final String COULEUR_INACTIVE = "-fx-background-color: transparent;";
 
     private List<Pane> tousLesBords;
+    private List<StackPane> everyPane;
 
     @FXML
     public void initialize() {
         tousLesBords = List.of(bord1, bord2, bord3, bord4, bord5);
+        everyPane =List.of(tableau, personne);
     }
+
 
     // Active une seule barre à la fois, éteint les autres
     private void activerBord(Pane bordActif) {
@@ -39,15 +48,25 @@ public class Me {
         }
     }
 
+    private void activeBtn(StackPane paneActif){
+        for (StackPane pane: everyPane){
+            pane.setVisible(pane == paneActif ? true : false);
+            pane.setManaged(pane == paneActif ? true : false);
+        }
+    }
+
+
     @FXML
     private void setAccueil() {
         activerBord(bord1);
+        activeBtn(tableau);
         // TODO: afficher la vue "Tableau de bord"
     }
 
     @FXML
     private void setPersonne() {
         activerBord(bord2);
+        activeBtn(personne);
         // TODO: afficher la vue "Personne"
     }
 
