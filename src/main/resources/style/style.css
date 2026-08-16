@@ -11,3 +11,9 @@
     -fx-background-insets: 0, 1;
     -fx-background-radius: 8, 7;
 }
+
+.btnMenu{
+    -fx-background-color: transparent;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
