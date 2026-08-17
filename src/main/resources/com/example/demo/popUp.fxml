@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane style="-fx-background-color: white; -fx-background-radius: 16;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AjoutTarifController">
+    <children>
+        <VBox prefHeight="440.0" prefWidth="385.0" spacing="16.0">
+            <padding>
+                <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label prefHeight="25.0" prefWidth="235.0" text="Ajouter un nouveau Tarif" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnFermer" mnemonicParsing="false" onAction="#fermerPopup" style="-fx-background-color: transparent;" text="✕" textFill="#64748b">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <Pane prefHeight="1.0" style="-fx-background-color: #E2E8F0;" />
+
+                <VBox spacing="6.0">
+                    <children>
+                        <Label text="Diplôme requis" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <MenuButton fx:id="menuDiplome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ex: Licence, Master, Doctorat...">
+                            <items>
+                                <MenuItem onAction="#choisirDiplome" text="Licence" />
+                                <MenuItem onAction="#choisirDiplome" text="Master" />
+                                <MenuItem onAction="#choisirDiplome" text="Doctorat" />
+                            </items>
+                        </MenuButton>
+                    </children>
+                </VBox>
+
+                <VBox spacing="6.0">
+                    <children>
+                        <Label text="Catégorie Professionnelle" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <MenuButton fx:id="menuCategorie" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;" text="Ex: Catégorie A, B, C, D">
+                            <items>
+                                <MenuItem onAction="#choisirCategorie" text="Catégorie A" />
+                                <MenuItem onAction="#choisirCategorie" text="Catégorie B" />
+                                <MenuItem onAction="#choisirCategorie" text="Catégorie C" />
+                                <MenuItem onAction="#choisirCategorie" text="Catégorie D" />
+                            </items>
+                        </MenuButton>
+                    </children>
+                </VBox>
+
+                <VBox spacing="6.0">
+                    <children>
+                        <Label text="Montant mensuel (Ar)" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="champMontant" prefHeight="36.0" promptText="Saisir le montant en Ariary" style="-fx-background-color: transparent; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;" />
+                    </children>
+                </VBox>
+
+                <Pane prefHeight="1.0" style="-fx-background-color: #E2E8F0;" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#fermerPopup" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;" text="Annuler" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#enregistrerTarif" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="Enregistrer" textFill="#0d1a4d">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

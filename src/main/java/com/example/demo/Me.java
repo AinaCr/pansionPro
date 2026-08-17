@@ -1,8 +1,17 @@
 package com.example.demo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import java.io.IOException;
 import java.util.List;
 
 public class Me {
@@ -13,6 +22,9 @@ public class Me {
 
     @FXML
     private StackPane tableau;
+
+    @FXML
+    StackPane tarif;
 
     @FXML
     private StackPane personne;
@@ -39,8 +51,9 @@ public class Me {
 
     @FXML
     public void initialize() {
+
         tousLesBords = List.of(bord1, bord2, bord3, bord4, bord5);
-        everyPane =List.of(tableau, personne,addAction);
+        everyPane =List.of(tableau, personne,addAction,tarif);
     }
 
 
@@ -76,6 +89,7 @@ public class Me {
     @FXML
     private void setTarifs() {
         activerBord(bord3);
+        activeBtn(tarif);
         // TODO: afficher la vue "Tarifs"
     }
 
@@ -103,4 +117,40 @@ public class Me {
         activeBtn(addAction);
 
     }
+    @FXML
+    private void ouvrirPopupTarif() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("popUp.fxml")
+            );
+
+            Parent racine = loader.load();
+
+            Scene scene = new Scene(racine);
+            scene.setFill(Color.TRANSPARENT);
+
+            Stage popup = new Stage();
+
+            // Fenêtre transparente
+            popup.initStyle(StageStyle.TRANSPARENT);
+
+            // La fenêtre principale devient le propriétaire du popup
+            Stage fenetrePrincipale =
+                    (Stage) tableau.getScene().getWindow();
+
+            popup.initOwner(fenetrePrincipale);
+
+            // Modale par rapport à la fenêtre principale
+            popup.initModality(Modality.WINDOW_MODAL);
+
+            popup.setScene(scene);
+            popup.setResizable(false);
+
+            popup.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
