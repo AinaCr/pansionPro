@@ -3,16 +3,20 @@ package com.example.demo;
 import java.time.LocalDate;
 
 public class Personne {
-    private final String im;
-    private final String nom;
-    private final String prenoms;
-    private final LocalDate datenais;
-    private final String diplome;
-    private final String statut;
-    private final String situation;
+    private String im;
+    private String nom;
+    private String prenoms;
+    private LocalDate datenais;
+    private String diplome;
+    private String statut;
+    private String situation;
+    private String contact;
+    private String nomConjoint;
+    private String prenomConjoint;
 
     public Personne(String im, String nom, String prenoms, LocalDate datenais,
-                    String diplome, String statut, String situation) {
+                    String diplome, String statut, String situation,
+                    String contact, String nomConjoint, String prenomConjoint) {
         this.im = im;
         this.nom = nom;
         this.prenoms = prenoms;
@@ -20,7 +24,14 @@ public class Personne {
         this.diplome = diplome;
         this.statut = statut;
         this.situation = situation;
+        this.contact = contact;
+        this.nomConjoint = nomConjoint;
+        this.prenomConjoint = prenomConjoint;
     }
+
+    public String getContact() { return contact; }
+    public String getNomConjoint() { return nomConjoint; }
+    public String getPrenomConjoint() { return prenomConjoint; }
 
     public String getIm() { return im; }
     public String getNom() { return nom; }

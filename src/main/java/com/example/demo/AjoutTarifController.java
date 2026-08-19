@@ -14,23 +14,26 @@ import java.sql.SQLException;
 
 public class AjoutTarifController {
 
-    @FXML
-    private MenuButton menuDiplome;
+    @FXML private MenuButton menuDiplome;
+    @FXML private MenuButton menuCategorie;
+    @FXML private TextField champMontant;
 
-    @FXML
-    private MenuButton menuCategorie;
-
-    @FXML
-    private TextField champMontant;
-
-    // Référence vers le contrôleur principal Me
     private Me meController;
+    private String numTarifEnCoursModification = null; // null = création, sinon = modification
 
-    /**
-     * Reçoit le contrôleur Me depuis la fenêtre principale.
-     */
+    private static final String TEXTE_DEFAUT_DIPLOME = "Ex: Licence, Master, Doctorat...";
+    private static final String TEXTE_DEFAUT_CATEGORIE = "Ex: Catégorie A, B, C, D";
+
     public void setMeController(Me meController) {
         this.meController = meController;
+    }
+
+    /** Pré-remplit le popup pour modifier un tarif existant. */
+    public void preremplirPourModification(Tarif tarif) {
+        numTarifEnCoursModification = tarif.getNumTarif();
+        menuDiplome.setText(tarif.getDiplome());
+        menuCategorie.setText(tarif.getCategorie());
+        champMontant.setText(String.valueOf(tarif.getMontant()));
     }
 
     @FXML
@@ -56,137 +59,95 @@ public class AjoutTarifController {
         // VALIDATION DES CHAMPS
         // =========================
 
-        if (diplome == null
-                || diplome.isBlank()
-                || diplome.equals("Diplôme")) {
-
+        if (diplome == null || diplome.isBlank() || diplome.equals(TEXTE_DEFAUT_DIPLOME)) {
             afficherAlerte("Veuillez sélectionner un diplôme.");
             return;
         }
 
-        if (categori == null
-                || categori.isBlank()
-                || categori.equals("Catégorie")) {
-
+        if (categori == null || categori.isBlank() || categori.equals(TEXTE_DEFAUT_CATEGORIE)) {
             afficherAlerte("Veuillez sélectionner une catégorie.");
             return;
         }
 
         if (montantTexte == null || montantTexte.isBlank()) {
-
             afficherAlerte("Veuillez saisir un montant.");
             return;
         }
 
-        // =========================
-        // CONVERSION DU MONTANT
-        // =========================
-
         int montant;
-
         try {
             montant = Integer.parseInt(montantTexte.trim());
-
         } catch (NumberFormatException e) {
-
             afficherAlerte("Le montant doit être un nombre entier.");
             return;
         }
 
-        // =========================
-        // GÉNÉRATION DU NUMÉRO
-        // =========================
+        if (numTarifEnCoursModification != null) {
+            modifierTarif(numTarifEnCoursModification, diplome, categori, montant);
+        } else {
+            creerTarif(diplome, categori, montant);
+        }
+    }
 
+    private void creerTarif(String diplome, String categori, int montant) {
         String numTarif = genererNumTarif();
+        String sql = "INSERT INTO TARIF (num_tarif, diplome, categori, montant) VALUES (?, ?, ?, ?)";
 
-        // =========================
-        // INSERTION SQL
-        // =========================
-
-        String sql = """
-                INSERT INTO TARIF
-                (num_tarif, diplome, categori, montant)
-                VALUES (?, ?, ?, ?)
-                """;
-
-        try (
-                Connection cnx = Database.getConnection();
-                PreparedStatement ps = cnx.prepareStatement(sql)
-        ) {
+        try (Connection cnx = Database.getConnection();
+             PreparedStatement ps = cnx.prepareStatement(sql)) {
 
             ps.setString(1, numTarif);
             ps.setString(2, diplome);
             ps.setString(3, categori);
             ps.setInt(4, montant);
-
             ps.executeUpdate();
 
-            System.out.println(
-                    "Tarif enregistré : "
-                            + numTarif
-                            + " | "
-                            + diplome
-                            + " | "
-                            + categori
-                            + " | "
-                            + montant
-            );
+            System.out.println("Tarif enregistré : " + numTarif + " | " + diplome + " | " + categori + " | " + montant);
 
-            // =========================
-            // RAFRAÎCHIR LE TABLEAU
-            // =========================
-
-            if (meController != null) {
-                meController.rafraichirTableau();
-            }
-
-            // =========================
-            // FERMER LA POPUP
-            // =========================
-
+            if (meController != null) meController.rafraichirTableau();
             fermerPopup();
 
         } catch (SQLException e) {
-
             e.printStackTrace();
-
-            afficherAlerte(
-                    "Erreur lors de l'enregistrement du tarif : "
-                            + e.getMessage()
-            );
+            afficherAlerte("Erreur lors de l'enregistrement du tarif : " + e.getMessage());
         }
     }
 
-    /**
-     * Génère un numéro de tarif basé sur l'horodatage.
-     */
-    private String genererNumTarif() {
+    private void modifierTarif(String numTarif, String diplome, String categori, int montant) {
+        String sql = "UPDATE TARIF SET diplome = ?, categori = ?, montant = ? WHERE num_tarif = ?";
 
+        try (Connection cnx = Database.getConnection();
+             PreparedStatement ps = cnx.prepareStatement(sql)) {
+
+            ps.setString(1, diplome);
+            ps.setString(2, categori);
+            ps.setInt(3, montant);
+            ps.setString(4, numTarif);
+            ps.executeUpdate();
+
+            System.out.println("Tarif modifié : " + numTarif + " | " + diplome + " | " + categori + " | " + montant);
+
+            if (meController != null) meController.rafraichirTableau();
+            fermerPopup();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            afficherAlerte("Erreur lors de la modification du tarif : " + e.getMessage());
+        }
+    }
+
+    private String genererNumTarif() {
         return "TAR-" + System.currentTimeMillis();
     }
 
-    /**
-     * Affiche une alerte.
-     */
     private void afficherAlerte(String message) {
-
-        Alert alert = new Alert(
-                Alert.AlertType.WARNING,
-                message
-        );
-
+        Alert alert = new Alert(Alert.AlertType.WARNING, message);
         alert.showAndWait();
     }
 
-    /**
-     * Ferme la fenêtre popup.
-     */
     @FXML
     private void fermerPopup() {
-
-        Stage stage =
-                (Stage) champMontant.getScene().getWindow();
-
+        Stage stage = (Stage) champMontant.getScene().getWindow();
         stage.close();
     }
 }

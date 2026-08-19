@@ -7,10 +7,12 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -25,9 +27,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane focusTraversable="true" prefHeight="816.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Me">
+<AnchorPane focusTraversable="true" maxHeight="816.0" maxWidth="1017.0" minHeight="816.0" minWidth="1017.0" prefHeight="816.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Me">
    <children>
-      <StackPane fx:id="page2" prefHeight="816.0" prefWidth="1017.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="page2" managed="false" prefHeight="816.0" prefWidth="1017.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
@@ -369,6 +371,7 @@
                                              <TableColumn fx:id="colMontant" prefWidth="120.0" text="Montant" />
                                              <TableColumn fx:id="colDatePaiement" prefWidth="130.0" text="Date de Paiement" />
                                              <TableColumn fx:id="colStatut" prefWidth="90.0" text="Statut" />
+                                             <TableColumn fx:id="colActionsPaiement" prefWidth="70.0" sortable="false" text="Actions" />
                                           </columns>
                                        </TableView>
                                     </children>
@@ -519,7 +522,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane fx:id="addAction" managed="true" prefHeight="756.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;" visible="true">
+                  <StackPane fx:id="addAction" managed="false" prefHeight="756.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;" visible="false">
                      <children>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="736.0" prefWidth="792.0">
                            <children>
@@ -581,9 +584,7 @@
                                                          <font><Font name="System Bold" size="14.0" /></font>
                                                          <VBox.margin><Insets top="16.0" /></VBox.margin>
                                                       </Label>
-                                                      <DatePicker fx:id="txtDateNaissance"
-                                                                  prefHeight="35.0"
-                                                                  prefWidth="344.0" />
+                                                      <DatePicker fx:id="txtDateNaissance" prefHeight="35.0" prefWidth="344.0" />
 
                                                       <Label text="Diplôme le plus élevé *" textFill="#0d1a4d">
                                                          <font><Font name="System Bold" size="14.0" /></font>
@@ -671,23 +672,51 @@
                                                          <VBox.margin><Insets top="16.0" /></VBox.margin>
                                                       </Pane>
 
-                                                      <Label style="-fx-text-fill: #64748b;" text="Informations du Conjoint (Si applicable)">
-                                                         <font><Font size="14.0" /></font>
-                                                         <VBox.margin><Insets top="8.0" /></VBox.margin>
-                                                      </Label>
+                                                      <VBox fx:id="boxInformationsConjoint" spacing="0">
 
-                                                      <Label text="Nom du conjoint" textFill="#0d1a4d">
-                                                         <font><Font name="System Bold" size="14.0" /></font>
-                                                         <VBox.margin><Insets top="8.0" /></VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtNomConjoint" prefHeight="35.0" prefWidth="344.0" promptText="Ex: RAZAFINDRAHETY" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                         <Label style="-fx-text-fill: #64748b;"
+                                                                text="Informations du Conjoint (Si applicable)">
+                                                            <font>
+                                                               <Font size="14.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                               <Insets top="8.0" />
+                                                            </VBox.margin>
+                                                         </Label>
 
-                                                      <Label text="Prénom du conjoint" textFill="#0d1a4d">
-                                                         <font><Font name="System Bold" size="14.0" /></font>
-                                                         <VBox.margin><Insets top="16.0" /></VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtPrenomConjoint" prefHeight="35.0" prefWidth="344.0" promptText="Ex: Bakoly" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                                         <Label text="Nom du conjoint"
+                                                                textFill="#0d1a4d">
+                                                            <font>
+                                                               <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                               <Insets top="8.0" />
+                                                            </VBox.margin>
+                                                         </Label>
 
+                                                         <TextField fx:id="txtNomConjoint"
+                                                                    prefHeight="35.0"
+                                                                    prefWidth="344.0"
+                                                                    promptText="Ex: RAZAFINDRAHETY"
+                                                                    style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+
+                                                         <Label text="Prénom du conjoint"
+                                                                textFill="#0d1a4d">
+                                                            <font>
+                                                               <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                               <Insets top="16.0" />
+                                                            </VBox.margin>
+                                                         </Label>
+
+                                                         <TextField fx:id="txtPrenomConjoint"
+                                                                    prefHeight="35.0"
+                                                                    prefWidth="344.0"
+                                                                    promptText="Ex: Bakoly"
+                                                                    style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+
+                                                      </VBox>
                                                    </children>
                                                 </VBox>
 
@@ -774,13 +803,14 @@
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                      </padding>
                   </StackPane>
+                  <!-- Formulaire à gauche -->
                   <StackPane fx:id="paiment" managed="false" prefHeight="755.0" prefWidth="1017.0" style="-fx-background-color: #F1F3F9;" visible="false">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0">
                            <children>
 
                               <!-- Formulaire à gauche -->
-                              <StackPane alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="644.0" prefWidth="380.0">
+                              <StackPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="644.0" prefWidth="380.0">
                                  <children>
                                     <VBox prefWidth="380.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16;">
                                        <padding>
@@ -788,54 +818,85 @@
                                        </padding>
                                        <children>
                                           <Label text="Générer un Reçu" textFill="#0d1a4d">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
+                                             <font><Font name="System Bold" size="20.0" /></font>
                                           </Label>
                                           <Pane prefHeight="1.0" style="-fx-background-color: #E2E8F0;">
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
+                                             <VBox.margin><Insets top="16.0" /></VBox.margin>
                                           </Pane>
-                                          <Label text="Numéro IM" textFill="#0d1a4d">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
+
+                                          <Label text="Retraité" textFill="#0d1a4d">
+                                             <font><Font name="System Bold" size="14.0" /></font>
+                                             <VBox.margin><Insets top="16.0" /></VBox.margin>
                                           </Label>
-                                          <TextField fx:id="champNumeroIM" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="IM-9083" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
-                                          <Label text="Mois de paiement" textFill="#0d1a4d">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField fx:id="champMois" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="Ex: Octobre" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
-                                          <Label text="Année" textFill="#0d1a4d">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField fx:id="champAnnee" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="Ex: 2023" style="-fx-background-color: transparent; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-radius: 8;" />
+                                          <ComboBox fx:id="comboRetraite" editable="true" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="Nom, prénom ou IM..." />
+
+                                          <HBox spacing="8.0">
+                                             <VBox.margin><Insets top="16.0" /></VBox.margin>
+                                             <children>
+                                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label text="Mois" textFill="#0d1a4d">
+                                                         <font><Font name="System Bold" size="14.0" /></font>
+                                                      </Label>
+                                                      <ComboBox fx:id="comboMois" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="Mois" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label text="Année" textFill="#0d1a4d">
+                                                         <font><Font name="System Bold" size="14.0" /></font>
+                                                      </Label>
+                                                      <ComboBox fx:id="comboAnnee" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="Année" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+
                                           <Pane prefHeight="1.0" style="-fx-background-color: #E2E8F0;">
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
+                                             <VBox.margin><Insets top="16.0" /></VBox.margin>
                                           </Pane>
-                                          <Button fx:id="btnGenerer" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="Générer le document" textFill="#0d1a4d">
-                                             <font>
-                                                <Font name="System Bold" size="16.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="16.0" />
-                                             </VBox.margin>
+
+                                          <Label text="Aperçu" textFill="#64748b">
+                                             <font><Font name="System Bold" size="12.0" /></font>
+                                             <VBox.margin><Insets top="8.0" /></VBox.margin>
+                                          </Label>
+                                          <VBox spacing="6.0" style="-fx-background-color: #F1F3F9; -fx-background-radius: 8;">
+                                             <padding><Insets bottom="12.0" left="12.0" right="12.0" top="12.0" /></padding>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label prefWidth="90.0" text="Nom" textFill="#64748b" />
+                                                      <Label fx:id="lblApercuNom" text="—" textFill="#0d1a4d">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label prefWidth="90.0" text="Diplôme" textFill="#64748b" />
+                                                      <Label fx:id="lblApercuDiplome" text="—" textFill="#0d1a4d">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label prefWidth="90.0" text="Montant" textFill="#64748b" />
+                                                      <Label fx:id="lblApercuMontant" text="—" textFill="#0d1a4d">
+                                                         <font><Font name="System Bold" size="14.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Label fx:id="lblAvertissement" managed="false" text="" textFill="#DC2626" visible="false" wrapText="true">
+                                             <font><Font name="System Bold" size="11.0" /></font>
+                                             <VBox.margin><Insets top="6.0" /></VBox.margin>
+                                          </Label>
+
+                                          <Button fx:id="btnGenerer" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genererRecu" prefHeight="40.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="Générer le document" textFill="#0d1a4d">
+                                             <font><Font name="System Bold" size="16.0" /></font>
+                                             <VBox.margin><Insets top="16.0" /></VBox.margin>
                                           </Button>
                                        </children>
                                     </VBox>
@@ -845,8 +906,6 @@
                               <!-- Reçu à droite -->
                               <VBox alignment="CENTER" spacing="16.0" HBox.hgrow="ALWAYS">
                                  <children>
-
-                                    <!-- La carte du reçu -->
                                     <StackPane fx:id="ici" prefHeight="530.0" prefWidth="560.0" style="-fx-background-color: white; -fx-background-radius: 4;">
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
@@ -860,19 +919,13 @@
                                                       <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                                                          <children>
                                                             <Label text="REPPUBLIKAN'I MADAGASIKARA" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="12.0" />
-                                                               </font>
+                                                               <font><Font name="System Bold" size="12.0" /></font>
                                                             </Label>
                                                             <Label text="Fitiavana - Tanindrazana - Fandrosoana" textFill="#94a3b8">
-                                                               <font>
-                                                                  <Font size="10.0" />
-                                                               </font>
+                                                               <font><Font size="10.0" /></font>
                                                             </Label>
-                                                            <Label text="Ministère des Finances et du Budget" textFill="#64748b">
-                                                               <font>
-                                                                  <Font name="System Bold" size="10.0" />
-                                                               </font>
+                                                            <Label text="Ministère des Finances" textFill="#64748b">
+                                                               <font><Font name="System Bold" size="10.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </VBox>
@@ -881,14 +934,10 @@
                                                             <VBox alignment="CENTER" spacing="1.0">
                                                                <children>
                                                                   <Label text="TRESOR" textFill="#0d1a4d">
-                                                                     <font>
-                                                                        <Font name="System Bold" size="9.0" />
-                                                                     </font>
+                                                                     <font><Font name="System Bold" size="9.0" /></font>
                                                                   </Label>
                                                                   <Label text="PUBLIC" textFill="#0d1a4d">
-                                                                     <font>
-                                                                        <Font name="System Bold" size="9.0" />
-                                                                     </font>
+                                                                     <font><Font name="System Bold" size="9.0" /></font>
                                                                   </Label>
                                                                </children>
                                                             </VBox>
@@ -898,19 +947,13 @@
                                                 </HBox>
 
                                                 <VBox alignment="CENTER" spacing="4.0">
-                                                   <padding>
-                                                      <Insets bottom="20.0" top="8.0" />
-                                                   </padding>
+                                                   <padding><Insets bottom="20.0" top="8.0" /></padding>
                                                    <children>
                                                       <Label fx:id="labelTitreRecu" text="REÇU DE PAIEMENT DE PENSION" textFill="#0d1a4d">
-                                                         <font>
-                                                            <Font name="System Bold" size="20.0" />
-                                                         </font>
+                                                         <font><Font name="System Bold" size="20.0" /></font>
                                                       </Label>
-                                                      <Label fx:id="labelReference" text="Réf: RC-2023-O-309563" textFill="#94a3b8">
-                                                         <font>
-                                                            <Font size="12.0" />
-                                                         </font>
+                                                      <Label fx:id="labelReference" text="Réf: —" textFill="#94a3b8">
+                                                         <font><Font size="12.0" /></font>
                                                       </Label>
                                                    </children>
                                                 </VBox>
@@ -920,14 +963,10 @@
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Label prefWidth="180.0" text="Numéro IM" textFill="#64748b">
-                                                               <font>
-                                                                  <Font size="13.0" />
-                                                               </font>
+                                                               <font><Font size="13.0" /></font>
                                                             </Label>
-                                                            <Label fx:id="labelNumeroIM" text="309 563" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
+                                                            <Label fx:id="labelNumeroIM" text="—" textFill="#0d1a4d">
+                                                               <font><Font name="System Bold" size="14.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
@@ -936,21 +975,15 @@
                                                 </VBox>
 
                                                 <VBox spacing="8.0">
-                                                   <padding>
-                                                      <Insets top="14.0" />
-                                                   </padding>
+                                                   <padding><Insets top="14.0" /></padding>
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Label prefWidth="180.0" text="Nom du Retraité" textFill="#64748b">
-                                                               <font>
-                                                                  <Font size="13.0" />
-                                                               </font>
+                                                               <font><Font size="13.0" /></font>
                                                             </Label>
-                                                            <Label fx:id="labelNom" text="RAKOTO" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
+                                                            <Label fx:id="labelNom" text="—" textFill="#0d1a4d">
+                                                               <font><Font name="System Bold" size="14.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
@@ -959,21 +992,15 @@
                                                 </VBox>
 
                                                 <VBox spacing="8.0">
-                                                   <padding>
-                                                      <Insets top="14.0" />
-                                                   </padding>
+                                                   <padding><Insets top="14.0" /></padding>
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Label prefWidth="180.0" text="Prénoms" textFill="#64748b">
-                                                               <font>
-                                                                  <Font size="13.0" />
-                                                               </font>
+                                                               <font><Font size="13.0" /></font>
                                                             </Label>
-                                                            <Label fx:id="labelPrenoms" text="Bernard" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
+                                                            <Label fx:id="labelPrenoms" text="—" textFill="#0d1a4d">
+                                                               <font><Font name="System Bold" size="14.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
@@ -982,21 +1009,15 @@
                                                 </VBox>
 
                                                 <VBox spacing="8.0">
-                                                   <padding>
-                                                      <Insets top="14.0" />
-                                                   </padding>
+                                                   <padding><Insets top="14.0" /></padding>
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Label prefWidth="180.0" text="Période de Pension" textFill="#64748b">
-                                                               <font>
-                                                                  <Font size="13.0" />
-                                                               </font>
+                                                               <font><Font size="13.0" /></font>
                                                             </Label>
-                                                            <Label fx:id="labelPeriode" text="Octobre 2023" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="14.0" />
-                                                               </font>
+                                                            <Label fx:id="labelPeriode" text="—" textFill="#0d1a4d">
+                                                               <font><Font name="System Bold" size="14.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
@@ -1005,21 +1026,15 @@
                                                 </VBox>
 
                                                 <VBox spacing="8.0">
-                                                   <padding>
-                                                      <Insets top="14.0" />
-                                                   </padding>
+                                                   <padding><Insets top="14.0" /></padding>
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Label prefWidth="180.0" text="Montant Net Payé" textFill="#64748b">
-                                                               <font>
-                                                                  <Font size="13.0" />
-                                                               </font>
+                                                               <font><Font size="13.0" /></font>
                                                             </Label>
-                                                            <Label fx:id="labelMontant" text="500 000 Ariary (Ar)" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="16.0" />
-                                                               </font>
+                                                            <Label fx:id="labelMontant" text="—" textFill="#0d1a4d">
+                                                               <font><Font name="System Bold" size="16.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
@@ -1028,30 +1043,22 @@
                                                 </VBox>
 
                                                 <HBox alignment="BOTTOM_LEFT">
-                                                   <padding>
-                                                      <Insets top="24.0" />
-                                                   </padding>
+                                                   <padding><Insets top="24.0" /></padding>
                                                    <children>
                                                       <VBox spacing="4.0" HBox.hgrow="ALWAYS">
                                                          <children>
-                                                            <Label fx:id="labelDate" text="Fait à Antananarivo, le 15 Octobre 2023" textFill="#94a3b8">
-                                                               <font>
-                                                                  <Font size="11.0" />
-                                                               </font>
+                                                            <Label fx:id="labelDate" text="—" textFill="#94a3b8">
+                                                               <font><Font size="11.0" /></font>
                                                             </Label>
                                                             <Label text="Le Comptable du Trésor Principal" textFill="#0d1a4d">
-                                                               <font>
-                                                                  <Font name="System Bold" size="12.0" />
-                                                               </font>
+                                                               <font><Font name="System Bold" size="12.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </VBox>
                                                       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="55.0" prefWidth="115.0" style="-fx-border-color: #FFD933; -fx-border-style: dashed; -fx-border-width: 1.5; -fx-border-radius: 6;">
                                                          <children>
                                                             <Label text="Cachet Sec &amp; Signature" textFill="#FFD933">
-                                                               <font>
-                                                                  <Font name="System Bold" size="9.0" />
-                                                               </font>
+                                                               <font><Font name="System Bold" size="9.0" /></font>
                                                             </Label>
                                                          </children>
                                                       </StackPane>
@@ -1063,11 +1070,8 @@
                                        </children>
                                     </StackPane>
 
-                                    <!-- Bouton Télécharger le PDF -->
-                                    <Button fx:id="btnTelechargerPdf" mnemonicParsing="false" prefHeight="44.0" prefWidth="230.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="⬇  Télécharger le PDF" textFill="#0d1a4d">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
+                                    <Button fx:id="btnTelechargerPdf" mnemonicParsing="false" onAction="#telechargerRecu" prefHeight="44.0" prefWidth="230.0" style="-fx-background-color: #FFD933; -fx-background-radius: 8;" text="⬇  Télécharger le PDF" textFill="#0d1a4d">
+                                       <font><Font name="System Bold" size="14.0" /></font>
                                     </Button>
 
                                  </children>
@@ -1083,7 +1087,7 @@
                </children>
             </VBox>
          </children></StackPane>
-      <StackPane fx:id="page1" layoutX="-3.0" prefHeight="810.0" prefWidth="1009.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="page1" layoutX="-3.0" managed="true" prefHeight="810.0" prefWidth="1009.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="672.0" prefWidth="561.0">
                <children>
@@ -1118,7 +1122,7 @@
                                                 <Font name="Lato Regular" size="16.0" />
                                              </font>
                                           </Text>
-                                          <TextField prefHeight="39.0" prefWidth="291.0" style="-fx-border-radius: 16;" styleClass="textField" stylesheets="@../../../style/style.css" />
+                                          <PasswordField prefHeight="36.0" prefWidth="301.0" style="-fx-background-radius: 8; -fx-border-radius: 8;" />
                                        </children>
                                        <padding>
                                           <Insets top="27.0" />
